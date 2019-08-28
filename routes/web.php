@@ -11,6 +11,12 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+
+
+Route::get('/', 'WelcomeController@index');
+Route::get('contact', 'WelcomeController@contact');
+Route::get('about', 'PagesController@about');    // 追加
