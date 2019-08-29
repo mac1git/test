@@ -4,11 +4,15 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Article;
- 
+use App\Http\Requests\ArticleRequest;
+use Carbon\Carbon;
+
 class ArticlesController extends Controller {
  
     public function index() {
-        $articles = Article::all();
+        $articles = Article::latest('published_at')->latest('created_at')
+            ->published()
+            ->get();
  
         return view('articles.index', compact('articles'));
     }
@@ -22,15 +26,30 @@ class ArticlesController extends Controller {
     {
         return view('articles.create');
     }
-    public function store() {
-        $inputs = \Request::all();
+    public function store(ArticleRequest $request) {  // ①
+        // ここでの validate が不要になった
  
-        // dd($inputs); 削除
+        Article::create($request->validated());
+        return redirect('articles');
+    }
+    public function edit($id) {
+        $article = Article::findOrFail($id);
  
-        // ① マスアサインメントを使って、記事をDBに作成
-        Article::create($inputs);
+        return view('articles.edit', compact('article'));
+    }
  
-        // ② 記事一覧へリダイレクト
+    public function update(ArticleRequest $request, $id) {
+        $article = Article::findOrFail($id);
+ 
+        $article->update($request->validated());
+ 
+        return redirect(url('articles', [$article->id]));
+    }
+    public function destroy($id) {
+        $article = Article::findOrFail($id);
+ 
+        $article->delete();
+ 
         return redirect('articles');
     }
 }

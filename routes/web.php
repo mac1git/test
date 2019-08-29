@@ -17,3 +17,6 @@ Route::post('articles', 'ArticlesController@store');
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('articles/{id}/edit', 'ArticlesController@edit');  // 追加
+Route::patch('articles/{id}', 'ArticlesController@update');  // 追加
+Route::delete('articles/{id}', 'ArticlesController@destroy');  // 追加
