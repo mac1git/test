@@ -22,15 +22,16 @@ class ArticlesController extends Controller {
     {
         return view('articles.create');
     }
-    public function store() {
-        $inputs = \Request::all();
+    public function store(Request $request) {  // ①
+        $rules = [    // ②
+            'title' => 'required|min:3',
+            'body' => 'required',
+            'published_at' => 'required|date',
+        ];
+        $validated = $this->validate($request, $rules);  // ③
  
-        // dd($inputs); 削除
+        Article::create($validated);
  
-        // ① マスアサインメントを使って、記事をDBに作成
-        Article::create($inputs);
- 
-        // ② 記事一覧へリダイレクト
         return redirect('articles');
     }
 }
