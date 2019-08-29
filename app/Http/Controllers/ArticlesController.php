@@ -23,7 +23,7 @@ class ArticlesController extends Controller {
     {
         return view('articles.create');
     }
-    public function store(Request $request) {   // ①
+    public function store(ArticleRequest $request) {  // ①
         // ここでの validate が不要になった
  
         Article::create($request->validated());
