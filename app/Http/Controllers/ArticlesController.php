@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Article;
+use App\Http\Requests\ArticleRequest;
 
 class ArticlesController extends Controller {
  
@@ -22,16 +23,10 @@ class ArticlesController extends Controller {
     {
         return view('articles.create');
     }
-    public function store(Request $request) {  // ①
-        $rules = [    // ②
-            'title' => 'required|min:3',
-            'body' => 'required',
-            'published_at' => 'required|date',
-        ];
-        $validated = $this->validate($request, $rules);  // ③
+    public function store(Request $request) {   // ①
+        // ここでの validate が不要になった
  
-        Article::create($validated);
- 
+        Article::create($request->validated());
         return redirect('articles');
     }
 }

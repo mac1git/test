@@ -14,7 +14,7 @@
             </ul>
         </div>
     @endif
-    
+
     {!! Form::open(['url' => 'articles']) !!}
         <div class="form-group">
             {!! Form::label('title', 'Title:') !!}
