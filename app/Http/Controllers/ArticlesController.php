@@ -49,7 +49,6 @@ class ArticlesController extends Controller {
         $article = Article::findOrFail($id);
  
         $article->delete();
- 
-        return redirect('articles');
+        return redirect('articles')->with('message', '記事を削除しました。');
     }
 }
