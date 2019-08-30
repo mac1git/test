@@ -17,10 +17,13 @@
 //Route::get('articles/{id}/edit', ['as' => 'articles.edit', 'uses' => 'ArticlesController@edit']);
 //Route::patch('articles/{id}', ['as' => 'articles.update', 'uses' => 'ArticlesController@update']);
 //Route::delete('articles/{id}', ['as' => 'articles.destroy', 'uses' => 'ArticlesController@destroy']);
-Route::get('about', 'PagesController@about')->name('about');
-Route::get('contact', 'PagesController@contact')->name('contact');
+ Route::get('about', 'PagesController@about')->name('about');
+ Route::get('contact', 'PagesController@contact')->name('contact');
  
 // root を記事一覧にします
 Route::get('/', 'ArticlesController@index')->name('home');
  
 Route::resource('articles', 'ArticlesController');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
