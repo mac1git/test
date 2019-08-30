@@ -26,11 +26,10 @@ class ArticlesController extends Controller {
     {
         return view('articles.create');
     }
-    public function store(ArticleRequest $request) {  // ①
-        // ここでの validate が不要になった
- 
+    public function store(ArticleRequest $request) { 
         Article::create($request->validated());
-        return redirect('articles')>with('message', '記事を更新しました。');
+        return redirect()->route('articles.index')
+            ->with('message', '記事を追加しました。');
     }
     public function edit($id) {
         $article = Article::findOrFail($id);
@@ -40,11 +39,10 @@ class ArticlesController extends Controller {
  
     public function update(ArticleRequest $request, $id) {
         $article = Article::findOrFail($id);
- 
         $article->update($request->validated());
- 
-        return redirect(url('articles', [$article->id]))->with('message', '記事を編集しました。');
-    }
+        return redirect()->route('articles.show', [$article->id])
+            ->with('message', '記事を更新しました。');
+        }
     public function destroy($id) {
         $article = Article::findOrFail($id);
  

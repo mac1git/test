@@ -13,7 +13,6 @@
             class="btn btn-primary">
               編集
         </a>
- 
         
         {!! delete_form(['articles', $article->id]) !!}
  

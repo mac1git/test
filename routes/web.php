@@ -10,13 +10,15 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('articles', 'ArticlesController@index');
-Route::get('articles/create', 'ArticlesController@create'); // ①
-Route::get('articles/{id}', 'ArticlesController@show'); // (a)
-Route::post('articles', 'ArticlesController@store');
-Route::get('/', function () {
-    return view('welcome');
-});
-Route::get('articles/{id}/edit', 'ArticlesController@edit');  // 追加
-Route::patch('articles/{id}', 'ArticlesController@update');  // 追加
-Route::delete('articles/{id}', 'ArticlesController@destroy');  // 追加
+Route::get('/', 'WelcomeController@index')->name('home');
+Route::get('contact', 'PagesController@contact')->name('contact');
+Route::get('about', 'PagesController@about')->name('about');
+ 
+Route::get('articles', 'ArticlesController@index')->name('articles.index');
+Route::get('articles/create', 'ArticlesController@create')->name('articles.create');
+Route::get('articles/{id}', 'ArticlesController@show')->name('articles.show');
+Route::post('articles', 'ArticlesController@store')->name('articles.store');
+Route::get('articles/{id}/edit', 'ArticlesController@edit')->name('articles.edit');
+Route::patch('articles/{id}', 'ArticlesController@update')->name('articles.update');
+Route::delete('articles/{id}', 'ArticlesController@destroy')->name('articles.destroy');
+
