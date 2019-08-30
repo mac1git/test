@@ -30,7 +30,7 @@ class ArticlesController extends Controller {
         // ここでの validate が不要になった
  
         Article::create($request->validated());
-        return redirect('articles');
+        return redirect('articles')>with('message', '記事を更新しました。');
     }
     public function edit($id) {
         $article = Article::findOrFail($id);
@@ -43,7 +43,7 @@ class ArticlesController extends Controller {
  
         $article->update($request->validated());
  
-        return redirect(url('articles', [$article->id]));
+        return redirect(url('articles', [$article->id]))->with('message', '記事を編集しました。');
     }
     public function destroy($id) {
         $article = Article::findOrFail($id);
