@@ -1,5 +1,5 @@
 <?php
-// app/Http/routes.php
+// app/Http/routes.php謎ファイル
  
 // ...
 Route::get('/', 'WelcomeController@index')->name('home');

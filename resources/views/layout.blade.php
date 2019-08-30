@@ -10,14 +10,15 @@
     <script src="/js/app.js" defer></script>
 </head>
 <body>
-    <div class="container py-4">
-        {{-- フラッシュメッセージの表示 --}}
-        @if (session('message'))
-            <div class="alert alert-success">{{ session('message') }}</div>
+    {{-- ナビゲーションバーの Partial を使用 --}}
+    @include('navbar')
+ 
+    <div class="container">
+        @if (Session::has('flash_message'))
+            <div class="alert alert-success">{{ Session::get('flash_message') }}</div>
         @endif
  
-        {{-- コンテンツの表示 --}}
         @yield('content')
-    </div> 
+    </div>
 </body>
 </html>
