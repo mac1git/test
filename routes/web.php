@@ -21,4 +21,6 @@ Route::post('articles', 'ArticlesController@store')->name('articles.store');
 Route::get('articles/{id}/edit', 'ArticlesController@edit')->name('articles.edit');
 Route::patch('articles/{id}', 'ArticlesController@update')->name('articles.update');
 Route::delete('articles/{id}', 'ArticlesController@destroy')->name('articles.destroy');
-
+Route::resource('posts', 'PostsController');
+Route::resource('posts', 'PostsController')->only(['index', 'show']);
+Route::resource('posts', 'PostsController')->expect(['create', 'store', 'update', 'destroy']);
