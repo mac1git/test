@@ -10,13 +10,20 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('articles', 'ArticlesController@index');
-Route::get('articles/create', 'ArticlesController@create'); // ①
-Route::get('articles/{id}', 'ArticlesController@show'); // (a)
-Route::post('articles', 'ArticlesController@store');
-Route::get('/', function () {
-    return view('welcome');
-});
-Route::get('articles/{id}/edit', 'ArticlesController@edit');  // 追加
-Route::patch('articles/{id}', 'ArticlesController@update');  // 追加
-Route::delete('articles/{id}', 'ArticlesController@destroy');  // 追加
+//Route::get('articles', ['as' => 'articles.index', 'uses' => 'ArticlesController@index']);
+//Route::get('articles/create', ['as' => 'articles.create', 'uses' => 'ArticlesController@create']);
+//Route::get('articles/{id}', ['as' => 'articles.show', 'uses' => 'ArticlesController@show']);
+//Route::post('articles', ['as' => 'articles.store', 'uses' => 'ArticlesController@store']);
+//Route::get('articles/{id}/edit', ['as' => 'articles.edit', 'uses' => 'ArticlesController@edit']);
+//Route::patch('articles/{id}', ['as' => 'articles.update', 'uses' => 'ArticlesController@update']);
+//Route::delete('articles/{id}', ['as' => 'articles.destroy', 'uses' => 'ArticlesController@destroy']);
+ Route::get('about', 'PagesController@about')->name('about');
+ Route::get('contact', 'PagesController@contact')->name('contact');
+ 
+// root を記事一覧にします
+Route::get('/', 'ArticlesController@index')->name('home');
+ 
+Route::resource('articles', 'ArticlesController');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

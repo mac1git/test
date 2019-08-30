@@ -10,10 +10,15 @@
     <script src="/js/app.js" defer></script>
 </head>
 <body>
+    {{-- ナビゲーションバーの Partial を使用 --}}
+    @include('navbar')
  
-    <div class="container py-4"> <!-- ③ 追加 -->
+    <div class="container">
+        @if (Session::has('flash_message'))
+            <div class="alert alert-success">{{ Session::get('flash_message') }}</div>
+        @endif
+ 
         @yield('content')
     </div>
- 
 </body>
 </html>

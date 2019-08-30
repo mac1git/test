@@ -9,13 +9,11 @@
     <br/>
  
     <div>
-        <a>id]) }}"
-          class="btn btn-primary"
-        >
-            編集
+        <a href="{{ action('ArticlesController@edit', [$article->id]) }}"
+            class="btn btn-primary">
+              編集
         </a>
- 
-        // 変更
+        
         {!! delete_form(['articles', $article->id]) !!}
  
         <a href="{{ action('ArticlesController@index') }}" class="btn btn-secondary float-right">
