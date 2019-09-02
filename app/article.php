@@ -8,6 +8,10 @@ use Carbon\Carbon;
 class article extends Model
 {
     protected $fillable = ['title', 'body', 'published_at'];
+    public function user() 
+    {
+        return $this->belongsTo('App\User');
+    }
     public function toStringUp($value)
     {
         // 大文字に変換
