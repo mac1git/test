@@ -4,30 +4,28 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateArticleTagTable extends Migration
+class CreateArticlesTable extends Migration
 {
     public function up()
     {
-        Schema::create('article_tag', function (Blueprint $table) {
+        Schema::create('articles', function(Blueprint $table)
+        {
             $table->increments('id');
-            $table->unsignedInteger('article_id');
-            $table->unsignedInteger('tag_id');
+            $table->unsignedInteger('user_id');    // 追加
+            $table->string('title');
+            $table->text('body');
             $table->timestamps();
  
-            $table->unique(['article_id', 'tag_id']);
-            $table->foreign('article_id')
+            // 外部キーを追加
+            $table->foreign('user_id')
                 ->references('id')
-                ->on('articles')
-                ->onDelete('cascade');
-            $table->foreign('tag_id')
-                ->references('id')
-                ->on('tags')
+                ->on('users')
                 ->onDelete('cascade');
         });
     }
  
     public function down()
     {
-        Schema::dropIfExists('article_tag');
+        Schema::dropIfExists('articles');
     }
 }
