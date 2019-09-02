@@ -20,10 +20,9 @@
  Route::get('about', 'PagesController@about')->name('about');
  Route::get('contact', 'PagesController@contact')->name('contact');
  
-// root を記事一覧にします
-Route::get('/', 'ArticlesController@index')->name('home');
- 
+// root を記事一覧にします 
 Route::resource('articles', 'ArticlesController');
 Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/', 'ArticlesController@index')->name('home');
+// Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
