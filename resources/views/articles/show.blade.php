@@ -9,6 +9,8 @@
     <br/>
  
     <div>
+        {{-- ログインしている時だけ表示 --}}
+        @auth
         <a href="{{ action('ArticlesController@edit', [$article->id]) }}"
             class="btn btn-primary">
               編集

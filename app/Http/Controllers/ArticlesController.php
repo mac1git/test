@@ -8,6 +8,11 @@ use App\Http\Requests\ArticleRequest;
 use Carbon\Carbon;
 
 class ArticlesController extends Controller {
+    public function __construct()
+    {
+        $this->middleware('auth')
+            ->except(['index', 'show']);
+    }
  
     public function index() {
         $articles = Article::latest('published_at')->latest('created_at')
