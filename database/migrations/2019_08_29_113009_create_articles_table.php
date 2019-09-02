@@ -6,26 +6,24 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateArticlesTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
-        Schema::create('articles', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('title');        // 追加
-            $table->text('body');           // 追加
+        Schema::create('articles', function(Blueprint $table)
+        {
+            $table->increments('id');
+            $table->unsignedInteger('user_id');    // 追加
+            $table->string('title');
+            $table->text('body');
             $table->timestamps();
+ 
+            // 外部キーを追加
+            $table->foreign('user_id')
+                ->references('id')
+                ->on('users')
+                ->onDelete('cascade');
         });
     }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
+ 
     public function down()
     {
         Schema::dropIfExists('articles');

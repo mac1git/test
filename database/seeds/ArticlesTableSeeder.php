@@ -11,16 +11,12 @@ class ArticlesTableSeeder extends Seeder
 {
     public function run()
     {
-        DB::table('articles')->delete(); // ①
-        factory(App\Article::class, 20)->create(); // ①
-        $faker = Faker::create('en_US'); // ②
+        DB::table('articles')->delete();
  
-        for ($i = 0; $i < 10; $i++) {    // ③
-            Article::create([
-                'title' => $faker->sentence(),
-                'body' => $faker->paragraph(),
-                'published_at' => Carbon::today()
-            ]);
-        }
+        $user = App\User::first(); // 追加
+ 
+        factory(App\Article::class, 20)->create([ // 修正
+            'user_id' => $user->id,
+        ]);
     }
 }

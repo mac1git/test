@@ -1,19 +1,14 @@
 <?php
 
 use Illuminate\Database\Seeder;
-
+ 
 class DatabaseSeeder extends Seeder
 {
-    /**
-     * Seed the application's database.
-     *
-     * @return void
-     */
     public function run()
     {
         $this->call([
-            ArticlesTableSeeder::class, // ①
-            // OtherTableSeeder::class, // ②
+            UsersTableSeeder::class,  // 追加
+            ArticlesTableSeeder::class,
         ]);
     }
 }

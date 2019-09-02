@@ -8,9 +8,15 @@ use Carbon\Carbon;
 class article extends Model
 {
     protected $fillable = ['title', 'body', 'published_at'];
-    public function user() 
+    public function user()
     {
         return $this->belongsTo('App\User');
+    }
+ 
+    // 追加
+    public function tags()
+    {
+        return $this->belongsToMany('App\Tag')->withTimestamps();
     }
     public function toStringUp($value)
     {

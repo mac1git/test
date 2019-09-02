@@ -12,6 +12,11 @@
     {!! Form::label('published_at', 'Publish On:') !!}
     {!! Form::input('date', 'published_at', $published_at, ['class' => 'form-control']) !!}
 </div>
+{{-- 追加 --}}
+<div class="form-group">
+    {!! Form::label('tags', 'Tags:') !!}
+    {!! Form::select('tags[]', $tag_list, null, ['class' => 'form-control', 'multiple']) !!}
+</div>
 <div class="form-group">
     {!! Form::submit($submitButton, ['class' => 'btn btn-primary form-control']) !!}
 </div>
