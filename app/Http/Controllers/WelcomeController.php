@@ -6,8 +6,8 @@ use Illuminate\Http\Request;
 
 class WelcomeController extends Controller
 {
-    public function index()
+    public function contact()
     {
-        return view('welcome');
+         return view("contact");  // (a) view 関数に変更
     }
 }
