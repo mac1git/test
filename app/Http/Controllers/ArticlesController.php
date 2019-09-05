@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Http\Requests\ArticleRequest;
 use App\Article;
  
 class ArticlesController extends Controller {
@@ -23,14 +23,10 @@ class ArticlesController extends Controller {
     {
         return view('articles.create');
     }
-    public function store() {
-        // ① フォームの入力値を取得
-        $inputs = \Request::all();
+    public function store(ArticleRequest $request) {  // ①
+        // ここでの validate が不要になった
  
-        // ① マスアサインメントを使って、記事をDBに作成
-        Article::create($inputs);
- 
-        // ② 記事一覧へリダイレクト
+        Article::create($request->validated());
         return redirect('articles');
     }
 }
