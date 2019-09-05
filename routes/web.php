@@ -11,13 +11,14 @@
 |
 */
 
-//Route::get('/', function () {
-//    return view('welcome');
-//});
-  
-Route::get('articles', 'ArticlesController@index');
-Route::get('articles/create', 'ArticlesController@create');
-Route::get('articles/{id}', 'ArticlesController@show');
-Route::post('articles', 'ArticlesController@store');
-Route::get('articles/{id}/edit', 'ArticlesController@edit');  // 追加
-Route::patch('articles/{id}', 'ArticlesController@update');  // 追加
+Route::get('about', 'PagesController@about')->name('about');
+Route::get('contact', 'PagesController@contact')->name('contact');
+// root を記事一覧にします
+Route::get('/', 'ArticlesController@index')->name('home');
+Route::resource('articles', 'ArticlesController');
+Auth::routes();
+// Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
+Route::get('admin/profile', function () {
+    })->middleware('auth');
+// $routeMiddleware に登録したキーで指定します。

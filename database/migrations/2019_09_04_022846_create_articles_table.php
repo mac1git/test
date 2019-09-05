@@ -18,6 +18,11 @@ class CreateArticlesTable extends Migration
             $table->string('title');        // 追加
             $table->text('body');           // 追加
             $table->timestamps();
+            // 外部キーを追加
+            $table->foreign('user_id')
+                ->references('id')
+                ->on('users')
+                ->onDelete('cascade');            
         });
     }
 
