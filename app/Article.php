@@ -1,7 +1,7 @@
 <?php
 
 namespace App;
-
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class Article extends Model
@@ -11,7 +11,9 @@ class Article extends Model
     {
         return $this->belongsTo('App\User');
     }
- 
+    public function scopePublished($query) {
+        $query->where('published_at', '<=', Carbon::now());
+    }
     // 追加
     public function tags()
     {
@@ -31,8 +33,4 @@ class Article extends Model
      // published_at で日付ミューテータを使う
      protected $dates = ['published_at'];
      //  published scopeを定義
-    public function scopePublished($query) {
-        $query->where('published_at', '<=', Carbon::now());
-    }
- 
 }
